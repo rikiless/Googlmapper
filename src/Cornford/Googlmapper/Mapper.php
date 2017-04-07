@@ -60,6 +60,24 @@ class Mapper extends MapperBase implements MappingInterface {
 	}
 
 	/**
+	 * Renders and returns Google Map autocomplete input.
+	 *
+	 * @return string
+	 */
+	public function renderAutocompleteInput($item = -1)
+	{
+		if (!$this->isEnabled()) {
+			return;
+		}
+
+		return $this->view->make('googlmapper::auto-complete-input')
+			->withView($this->view)
+			->withOptions($this->generateRenderOptions())
+            ->withId($item > -1 ? $item : 0)
+			->render();
+	}
+
+	/**
 	 * Generates the render options for Google Map.
 	 *
 	 * @param integer $item

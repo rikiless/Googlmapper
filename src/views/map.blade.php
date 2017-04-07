@@ -88,6 +88,10 @@
 			var markerCluster = new MarkerClusterer(map_{!! $id !!}, markers, markerClusterOptions);
 		@endif
 
+		@if ($options['autocomplete'])
+		    @include('googlmapper::auto-complete')
+		@endif
+
 		maps.push({
 			key: {!! $id !!},
 			markers: markers,

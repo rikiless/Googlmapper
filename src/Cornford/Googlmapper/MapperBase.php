@@ -64,6 +64,8 @@ abstract class MapperBase implements MappingBaseInterface
 	const CLUSTERS_CENTER = false;
 	const CLUSTERS_SIZE = 2;
 
+	const AUTOCOMPLETE = false;
+
 	/**
 	 * View.
 	 *
@@ -591,6 +593,13 @@ abstract class MapperBase implements MappingBaseInterface
 	 */
 	protected $tilt;
 
+    /**
+     * Map autocomplete.
+     *
+     * @var integer
+     */
+    protected $autocomplete;
+
 	/**
 	 * Map marker icon.
 	 *
@@ -713,14 +722,15 @@ abstract class MapperBase implements MappingBaseInterface
 		$this->setHeading(isset($options['heading']) ? $options['heading'] : self::HEADING);
 		$this->setTilt(isset($options['tilt']) ? $options['tilt'] : self::TILT);
 		$this->setUi(isset($options['ui']) ? $options['ui'] : self::UI);
-		$this->setIcon(isset($options['markers']['icon']) ? $options['markers']['icon'] : self::ICON);
-		$this->setAnimation(isset($options['markers']['animation']) ? $options['markers']['animation'] : self::ANIMATION_NONE);
-		$this->setCluster(isset($options['cluster']) ? $options['cluster'] : self::CLUSTER);
-		$this->setClustersIcon(isset($options['clusters']['icon']) ? $options['clusters']['icon'] : self::CLUSTERS_ICON);
-		$this->setClustersGrid(isset($options['clusters']['grid']) ? $options['clusters']['grid'] : self::CLUSTERS_GRID);
-		$this->setClustersZoom(isset($options['clusters']['zoom']) ? $options['clusters']['zoom'] : self::CLUSTERS_ZOOM);
-		$this->setClustersCenter(isset($options['clusters']['center']) ? $options['clusters']['center'] : self::CLUSTERS_CENTER);
-		$this->setClustersSize(isset($options['clusters']['size']) ? $options['clusters']['size'] : self::CLUSTERS_SIZE);
+        $this->setAutocomplete(isset($options['autocomplete']) ? $options['autocomplete'] : self::AUTOCOMPLETE);
+        $this->setIcon(isset($options['markers']['icon']) ? $options['markers']['icon'] : self::ICON);
+        $this->setAnimation(isset($options['markers']['animation']) ? $options['markers']['animation'] : self::ANIMATION_NONE);
+        $this->setCluster(isset($options['cluster']) ? $options['cluster'] : self::CLUSTER);
+        $this->setClustersIcon(isset($options['clusters']['icon']) ? $options['clusters']['icon'] : self::CLUSTERS_ICON);
+        $this->setClustersGrid(isset($options['clusters']['grid']) ? $options['clusters']['grid'] : self::CLUSTERS_GRID);
+        $this->setClustersZoom(isset($options['clusters']['zoom']) ? $options['clusters']['zoom'] : self::CLUSTERS_ZOOM);
+        $this->setClustersCenter(isset($options['clusters']['center']) ? $options['clusters']['center'] : self::CLUSTERS_CENTER);
+        $this->setClustersSize(isset($options['clusters']['size']) ? $options['clusters']['size'] : self::CLUSTERS_SIZE);
 	}
 
 	/**
@@ -1333,6 +1343,34 @@ abstract class MapperBase implements MappingBaseInterface
 		return $this->tilt;
 	}
 
+    /**
+     * Set map autocomplete.
+     *
+     * @param boolean $value
+     *
+     * @throws MapperArgumentException
+     *
+     * @return void
+     */
+    public function setAutocomplete($value)
+    {
+        if (!is_bool($value)) {
+            throw new MapperArgumentException('Invalid autocomplete setting.');
+        }
+
+        $this->autocomplete = $value;
+    }
+
+    /**
+     * Get map autocomplete.
+     *
+     * @return boolean
+     */
+    public function getAutocomplete()
+    {
+        return $this->autocomplete;
+    }
+
 	/**
 	 * Set map marker icon.
 	 *
@@ -1618,6 +1656,7 @@ abstract class MapperBase implements MappingBaseInterface
 				'center' => $this->getClustersCenter(),
 				'size' => $this->getClustersSize()
 			],
+            'autocomplete' => $this->getAutocomplete(),
 		];
 	}
 

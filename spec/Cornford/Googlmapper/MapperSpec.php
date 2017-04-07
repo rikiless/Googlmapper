@@ -28,6 +28,7 @@ class MapperSpec extends ObjectBehavior
 		$view->shouldReceive('withView')->andReturn($view);
 		$view->shouldReceive('withOptions')->andReturn($view);
 		$view->shouldReceive('withItems')->andReturn($view);
+		$view->shouldReceive('withId')->andReturn($view);
 		$view->shouldReceive('render')->andReturn(self::STRING);
 		$view->shouldReceive('location')->andReturn($location);
 
@@ -163,6 +164,12 @@ class MapperSpec extends ObjectBehavior
 		$this->getTilt()->shouldReturn(self::INTEGER);
 	}
 
+    public function it_can_set_and_get_autocomplete_option()
+    {
+        $this->setAutocomplete(self::BOOLEAN);
+        $this->getAutocomplete()->shouldReturn(self::BOOLEAN);
+    }
+
 	public function it_can_set_and_get_icon_option()
 	{
 		$this->setIcon(self::STRING);
@@ -277,5 +284,11 @@ class MapperSpec extends ObjectBehavior
 	{
 		$this->map(self::INTEGER, self::INTEGER)->shouldReturn($this);
 		$this->renderJavascript()->shouldReturn(self::STRING);
+	}
+
+	public function it_can_create_autocomplete_input_inclusions()
+	{
+		$this->map(self::INTEGER, self::INTEGER)->shouldReturn($this);
+		$this->renderAutocompleteInput()->shouldReturn(self::STRING);
 	}
 }

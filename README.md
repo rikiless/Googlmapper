@@ -19,6 +19,8 @@ Think of Googlmapper as an easy way to integrate Google Maps with Laravel, provi
 - `Mapper::rectangle`
 - `Mapper::circle`
 - `Mapper::render`
+- `Mapper::renderJavascript`
+- `Mapper::renderAutocompleteInput`
 
 ## Installation
 
@@ -66,6 +68,7 @@ You can now configure Googlmapper in a few simple steps. Open `app/config/packag
 - `fullscreenControl` - Set the default fullscreen control for Google Maps, e.g. true.
 - `type` - Set the default map type for Google Maps, e.g. ROADMAP, SATELLITE, HYBRID, TERRAIN.
 - `ui` - Show the Google Maps default UI options, e.g. true.
+- `autocomplete` - Should allow location autocomplete with Google Maps, e.g. true.
 - `markers.icon` - Set the default marker icon, e.g. img/icon.png.
 - `markers.animation` - Set the default marker animation, e.g. NONE, DROP, BOUNCE.
 - `cluster` - Set if map marker clusters should be used.
@@ -94,6 +97,7 @@ This will give you access to
 - [Circle](#circle)
 - [Render](#render)
 - [RenderJavascript](#renderJavascript)
+- [RenderAutocompleteInput](#renderAutocompleteInput)
 
 ### Example
 
@@ -270,11 +274,17 @@ The `render` method allows all maps to be rendered to the page, this method can 
 	Mapper::render();
 	Mapper::render(0);
 
-### RenderJavascript
+### Render Javascript
 
 The `renderJavascript` method allows all required javascript to be rendered to the page, this method can be included in Views or added as controller passed parameter.
 
     Mapper::renderJavascript();
+
+### Render Autocomplete Input
+
+The `renderAutocompleteInput` method allows an autocomplete input to be added to the page, this method can be included in Views or added as controller passed parameter.
+
+    Mapper::renderAutocompleteInput();
 
 ### License
 
