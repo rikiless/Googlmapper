@@ -1642,6 +1642,7 @@ abstract class MapperBase implements MappingBaseInterface
 			'overlay' => '',
 			'markers' => [
 				'title' => '',
+				'label' => '',
 				'content' => '',
 				'icon' => $this->getIcon(),
 				'place' => '',
